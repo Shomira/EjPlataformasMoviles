@@ -19,7 +19,9 @@ class MainActivity : AppCompatActivity() {
        // listPlataformasMoviles()
         // 4. Propiedades Automoviles
         //propiedadesAutomoviles()
-        ordenarArray()
+        // TALLER EN CLASE
+        //ordenarArray()
+        validarCedula()
     }
     //PUNTO 1
     private fun validarEdad(){
@@ -106,8 +108,53 @@ class MainActivity : AppCompatActivity() {
 
     }
     private fun validarCedula(){
+        //val cedula = "0704757319"
+        val cedula = "1087978008"
+        // Extraemos los dos primeros digitos que son de la region
+        var digitoRegion = Integer.parseInt(cedula.substring(0,2))
+        // Extraemos el ultimo digito que es el validador
+        var ultimoDigito   = Integer.parseInt(cedula.substring(9,10))
+        val arrMult= arrayListOf<Int>()
+        arrMult.addAll(listOf(2, 1, 2, 1, 2, 1, 2, 1, 2 ))
+
+        var digito = 0
+        var suma =0
+        var i =0
+        var sms = "La valor no corresponde a un número de cédula"
+        if ( cedula.length == 10){
+            // Validamos si la region existe, tomando en cuenta que el maximo debe ser 24
+            if ( (digitoRegion >= 1) && (digitoRegion <=24)){
+                while( i < cedula.length -1){
+                    digito = Integer.parseInt(cedula.substring(i, i +1)) * arrMult[i]
+                    // Si el resultado  de la variable digito es mayor a nueve se resta nueve.
+                    if ( digito > 9 ){
+                        digito -= 9
+                        suma += digito
+                    }else{
+                        suma += digito
+                    }
+                    i+= 1
+                }
+                // Validar Cedula - Dividimos el resultado de la suma para 10 y si el residuo es
+                // igual al último digito de la cedula, entonces la cédula es vélida
+                // Si el residuo es 0 la cédula es correcta, caso contrario de que no conicida con
+                // el último digito, entonces el número no es correcto
+                if(( suma % 10 == 0) && ( suma%10 == ultimoDigito)){
+                    println("El número de cédula es válido")
+                    println(suma % 10)
+                }else if((10 - (suma % 10)) ==  ultimoDigito){
+                    println("El número de cédula es válido")
+                }else{
+                    println(sms)
+                }
+
+            }else{
+                println(sms)
+            }
+        }else{
+            println(sms)
+        }
 
     }
-
 
 }
