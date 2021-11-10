@@ -10,15 +10,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         // TALLER
         //1. Validar si una persona es mayor o menor de edad
-        validarEdad()
+       // validarEdad()
         // 2. Tabla de multiplicar de forma ascendente y descendente
-        tablaMultiplicar()
+       // tablaMultiplicar()
         // 3. Mostrar listado de paralelo de la materia de Plataformas Moviles
         // y los subgrupos por proyectos(mostrar resultados ordenados)
 
-        listPlataformasMoviles()
+       // listPlataformasMoviles()
         // 4. Propiedades Automoviles
-        propiedadesAutomoviles()
+        //propiedadesAutomoviles()
+        ordenarArray()
     }
     //PUNTO 1
     private fun validarEdad(){
@@ -85,8 +86,28 @@ class MainActivity : AppCompatActivity() {
         val automovil2= PropVehiculos(motor = "Gasolina", tonelaje = 2.1, capacidad = 3,  arrayOf(PropVehiculos.Vehiculo.Autobus))
         automovil2.code()
     }
+    private fun ordenarArray(){
+        val arrEdades= arrayListOf<Int>()
+        arrEdades.addAll(listOf(24, 34, 32, 28, 29, 22, 21, 20))
+        var aux =0
+        println(arrEdades.size)
+        // Ordenar de mayor a menor
+        for (i in 0 until arrEdades.size) {
+            for (j in 0 until arrEdades.size) {
+                if (arrEdades[i] > arrEdades[j]) {
+                    aux = arrEdades[i]
+                    arrEdades[i] = arrEdades[j]
+                    arrEdades[j] = aux
+                    println("${arrEdades[i]}")
+                }
+            }
+        }
+        println("$arrEdades")
 
+    }
+    private fun validarCedula(){
 
+    }
 
 
 }
