@@ -8,20 +8,32 @@ class MainActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        var divisor = "================================================================"
         // TALLER
         //1. Validar si una persona es mayor o menor de edad
-       // validarEdad()
+        validarEdad()
+        println(divisor)
         // 2. Tabla de multiplicar de forma ascendente y descendente
-       // tablaMultiplicar()
+        tablaMultiplicar()
+        println(divisor)
+
         // 3. Mostrar listado de paralelo de la materia de Plataformas Moviles
         // y los subgrupos por proyectos(mostrar resultados ordenados)
+        listPlataformasMoviles()
+        println(divisor)
 
-       // listPlataformasMoviles()
         // 4. Propiedades Automoviles
-        //propiedadesAutomoviles()
+        propiedadesAutomoviles()
+        println(divisor)
+
         // TALLER EN CLASE
-        //ordenarArray()
+        // Ordenar Array
+        ordenarArray()
+        println(divisor)
+
+        // Validar Cédula de Ecuador
         validarCedula()
+        println(divisor)
     }
     //PUNTO 1
     private fun validarEdad(){
@@ -60,8 +72,6 @@ class MainActivity : AppCompatActivity() {
         estudiantes.addAll(listOf("Joan Briceño", "Andres Vallejo", "Israel Tapia", "David Salazar",
             "Jeferson Cueva", "Jordy Esparza", "Ricardo Freire", "Santiago Garcia", "Brandon Vega",
             " Frank Saca", "Shomira Rosales"))
-        println("Proyecto Turismo")
-
         while (a >= 0){
             grupoTurismo.add(estudiantes[a])
             a-=1
@@ -76,40 +86,42 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-
     //PUNTO 4
     private fun propiedadesAutomoviles(){
         val automovil1 = PropVehiculos(motor = "Diésel", tonelaje = 2.2, capacidad = 4, arrayOf(PropVehiculos.Vehiculo.Industrial,
             PropVehiculos.Vehiculo.Camion))
-        println(automovil1.motor)
+        println("Automovil 1")
+        println("Motor: ${automovil1.motor} \n Cpacidad: ${automovil1.capacidad}\"")
         automovil1.code()
 
         //val sara= Programmer(name = "Sara", age = 29, arrayOf("Flutter", "Java", "C++"))
         val automovil2= PropVehiculos(motor = "Gasolina", tonelaje = 2.1, capacidad = 3,  arrayOf(PropVehiculos.Vehiculo.Autobus))
+        println("Automovil 2")
+        println("Motor: ${automovil2.motor} \n Cpacidad: ${automovil2.capacidad}")
         automovil2.code()
     }
     private fun ordenarArray(){
         val arrEdades= arrayListOf<Int>()
         arrEdades.addAll(listOf(24, 34, 32, 28, 29, 22, 21, 20))
         var aux =0
-        println(arrEdades.size)
         // Ordenar de mayor a menor
+        println("Arreglo Desordenado: $arrEdades")
         for (i in 0 until arrEdades.size) {
             for (j in 0 until arrEdades.size) {
                 if (arrEdades[i] > arrEdades[j]) {
                     aux = arrEdades[i]
                     arrEdades[i] = arrEdades[j]
                     arrEdades[j] = aux
-                    println("${arrEdades[i]}")
+
                 }
             }
         }
-        println("$arrEdades")
+        println("Arreglo ordenado: $arrEdades")
 
     }
     private fun validarCedula(){
         //val cedula = "0704757319"
-        val cedula = "1087978008"
+        val cedula = "1900671882"
         // Extraemos los dos primeros digitos que son de la region
         var digitoRegion = Integer.parseInt(cedula.substring(0,2))
         // Extraemos el ultimo digito que es el validador
@@ -120,7 +132,7 @@ class MainActivity : AppCompatActivity() {
         var digito = 0
         var suma =0
         var i =0
-        var sms = "La valor no corresponde a un número de cédula"
+        var sms = "La valor '$cedula' no corresponde a un número de cédula"
         if ( cedula.length == 10){
             // Validamos si la region existe, tomando en cuenta que el maximo debe ser 24
             if ( (digitoRegion >= 1) && (digitoRegion <=24)){
@@ -140,10 +152,10 @@ class MainActivity : AppCompatActivity() {
                 // Si el residuo es 0 la cédula es correcta, caso contrario de que no conicida con
                 // el último digito, entonces el número no es correcto
                 if(( suma % 10 == 0) && ( suma%10 == ultimoDigito)){
-                    println("El número de cédula es válido")
+                    println("El número de cédula: '$cedula' es válido")
                     println(suma % 10)
                 }else if((10 - (suma % 10)) ==  ultimoDigito){
-                    println("El número de cédula es válido")
+                    println("El número de cédula: '$cedula' es válido")
                 }else{
                     println(sms)
                 }
